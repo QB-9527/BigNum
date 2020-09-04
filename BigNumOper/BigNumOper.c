@@ -51,8 +51,8 @@ void addOrSub(int xNum1[], int xNum2[], int xSub, int xLen, int xNeg) {
 void mul(int xNum1[], int xNum2[], int xNum1Len, int xNum2Len, int xNeg) {
     int i, j;
     int mLen = xNum1Len + xNum2Len;
-    int* mAns;
-    mAns = calloc(MAX * 2, sizeof(int));
+    int* mAns = calloc(mLen, sizeof(int));
+	
     for (i = 0; i < xNum2Len; i++) {
         for (j = 0; j < xNum1Len; j++) {
             if (xNum2[i] == 0) {
@@ -62,7 +62,7 @@ void mul(int xNum1[], int xNum2[], int xNum1Len, int xNum2Len, int xNeg) {
         }
     }
 
-    for (i = 0; i < mLen; i++) {
+    for (i = 0; i < mLen - 1; i++) {
         mAns[i + 1] += mAns[i] / 10;
         mAns[i] = mAns[i] % 10;
     }
@@ -92,10 +92,9 @@ void testOper(char xNum1[], char xNum2[], char xOper) {
     int mSwap = 0;      //前後交換flag
     int mNum1Neg = 0;   //Num1負號flag
     int mNum2Neg = 0;   //Num2負號flag
-    int* mNum1, * mNum2;
 
-    mNum1 = calloc(MAX, sizeof(int));
-    mNum2 = calloc(MAX, sizeof(int));
+    int* mNum1 = calloc(MAX, sizeof(int));
+    int* mNum2 = calloc(MAX, sizeof(int));
 
     int mNum1Len = strlen(xNum1);
     int mNum2Len = strlen(xNum2);
@@ -116,7 +115,6 @@ void testOper(char xNum1[], char xNum2[], char xOper) {
         mSwap = 1;
     }
     else if (mNum1Len == mNum2Len) {
-        //for (i = mNum1Neg, j = mNum2Neg; (i < mNum1Len + mNum1Neg) && (j < mNum2Len + mNum2Neg); i++, j++) {
         for (i = 0; i < mNum1Len; i++) {
             if ((xNum1[i + mNum1Neg] - '0') < (xNum2[i + mNum2Neg] - '0')) {
                 mSwap = 1;
@@ -135,20 +133,20 @@ void testOper(char xNum1[], char xNum2[], char xOper) {
         mNum1Neg = mNum2Neg;
         mNum2Neg = mTemp;
 
-        for (i = mNum1Len + mNum1Neg - 1, j = 0; i >= mNum1Neg; i--, j++) {
-            mNum1[j] = xNum2[i] - '0';
+        for (i = mNum1Len - 1, j = 0; i >= 0; i--, j++) {
+            mNum1[j] = xNum2[i + mNum1Neg] - '0';
         }
-        for (i = mNum2Len + mNum2Neg - 1, j = 0; i >= mNum2Neg; i--, j++) {
-            mNum2[j] = xNum1[i] - '0';
+        for (i = mNum2Len - 1, j = 0; i >= 0; i--, j++) {
+            mNum2[j] = xNum1[i + mNum2Neg] - '0';
         }
 
     }
     else {  //不須交換,直接放入
-        for (i = mNum1Len + mNum1Neg - 1, j = 0; i >= mNum1Neg; i--, j++) {
-            mNum1[j] = xNum1[i] - '0';
+        for (i = mNum1Len - 1, j = 0; i >= 0; i--, j++) {
+            mNum1[j] = xNum1[i + mNum1Neg] - '0';
         }
-        for (i = mNum2Len + mNum2Neg - 1, j = 0; i >= mNum2Neg; i--, j++) {
-            mNum2[j] = xNum2[i] - '0';
+        for (i = mNum2Len - 1, j = 0; i >= 0; i--, j++) {
+            mNum2[j] = xNum2[i + mNum2Neg] - '0';
         }
     }
 
