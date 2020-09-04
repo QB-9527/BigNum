@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define MAX 50
 
 void addOrSub(int xNum1[], int xNum2[], int xSub, int xLen, int xNeg) {
@@ -7,7 +8,7 @@ void addOrSub(int xNum1[], int xNum2[], int xSub, int xLen, int xNeg) {
     int i;
 
     if (xSub == 0) {    //加法
-        for (i = 0; i <= xLen; i++) {
+        for (i = 0; i < xLen; i++) {
             xNum1[i] = xNum1[i] + xNum2[i];
             if (xNum1[i] > 9) {
                 xNum1[i] -= 10;
@@ -20,7 +21,7 @@ void addOrSub(int xNum1[], int xNum2[], int xSub, int xLen, int xNeg) {
     }
     else if (xSub == 1) {   //減法
         //僅做num1>num2的情況下
-        for (i = 0; i <= xLen; i++) {
+        for (i = 0; i < xLen; i++) {
             xNum1[i] = xNum1[i] - xNum2[i];
             if (xNum1[i] < 0) {
                 xNum1[i] += 10;
@@ -50,7 +51,8 @@ void addOrSub(int xNum1[], int xNum2[], int xSub, int xLen, int xNeg) {
 void mul(int xNum1[], int xNum2[], int xNum1Len, int xNum2Len, int xNeg) {
     int i, j;
     int mLen = xNum1Len + xNum2Len;
-    int mAns[MAX*2] = { 0 };
+    int* mAns;
+    mAns = calloc(MAX * 2, sizeof(int));
     for (i = 0; i < xNum2Len; i++) {
         for (j = 0; j < xNum1Len; j++) {
             if (xNum2[i] == 0) {
@@ -81,6 +83,8 @@ void mul(int xNum1[], int xNum2[], int xNum1Len, int xNum2Len, int xNeg) {
         printf("%d", mAns[i]);
     }
     printf("\n");
+
+    free(mAns);
 }
 
 void testOper(char xNum1[], char xNum2[], char xOper) {
@@ -88,8 +92,10 @@ void testOper(char xNum1[], char xNum2[], char xOper) {
     int mSwap = 0;      //前後交換flag
     int mNum1Neg = 0;   //Num1負號flag
     int mNum2Neg = 0;   //Num2負號flag
-    int mNum1[MAX] = { 0 };
-    int mNum2[MAX] = { 0 };
+    int* mNum1, * mNum2;
+
+    mNum1 = calloc(MAX, sizeof(int));
+    mNum2 = calloc(MAX, sizeof(int));
 
     int mNum1Len = strlen(xNum1);
     int mNum2Len = strlen(xNum2);
@@ -177,6 +183,9 @@ void testOper(char xNum1[], char xNum2[], char xOper) {
     else if (xOper == '*') {
         mul(mNum1, mNum2, mLen, mNum2Len, mNum1Neg ^ mNum2Neg);
     }
+
+    free(mNum1);
+    free(mNum2);
 }
 
 int main(){
@@ -205,7 +214,7 @@ int main(){
 	
     testOper("0", "0", '*');
     testOper("0", "123", '*');
-	testOper("123", "123", '*');
+    testOper("123", "123", '*');
     testOper("-123", "123", '*');
     testOper("123", "-123", '*');
     testOper("-123", "-123", '*');
