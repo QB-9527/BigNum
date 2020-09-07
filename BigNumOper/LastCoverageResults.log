@@ -1,0 +1,21 @@
+[2020-09-07 17:15:19] [info] Start Program:
+Path:"C:\\Users\\QB\\Documents\\git_src\\BigNumOper\\Debug\\BigNumOper.exe"
+Arguments:
+Working directory: "C:\\Users\\QB\\Documents\\git_src\\BigNumOper\\BigNumOper\\"
+Modules: Selected: C:\Users\QB\Documents\git_src\BigNumOper\Debug\BigNumOper.exe Excluded: 
+Sources: Selected: C:\Users\QB\Documents\git_src\BigNumOper\BigNumOper Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\QB\AppData\Local\Temp\ymqa1zdb.vkz 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2020-09-07 17:15:19] [info] Module: C:\Users\QB\Documents\git_src\BigNumOper\Debug\BigNumOper.exe is selected because it matches selected pattern: C:\Users\QB\Documents\git_src\BigNumOper\Debug\BigNumOper.exe
+[2020-09-07 17:15:19] [info] ----------------------------------------------------
+[2020-09-07 17:15:19] [info] Coverage binary generated in file: C:\Users\QB\AppData\Local\Temp\ymqa1zdb.vkz
+[2020-09-07 17:15:19] [info] ----------------------------------------------------
